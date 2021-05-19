@@ -45,36 +45,36 @@ We will create two staging tables where we will temporarily store input data fro
 **Table**: `staging_events` -- records from S3 events log
 | field name  | field type | field attribute(s) |
 | ----------- | ---------- | ------------------ |
-| artist | TEXT | |
-| auth | TEXT | |
-| firstName | TEXT | |
+| artist | VARCHAR | |
+| auth | VARCHAR | |
+| firstName | VARCHAR | |
 | gender | CHAR | |
 | itemInSession | INT |  |
-| lastName | TEXT | |
+| lastName | VARCHAR | |
 | length | FLOAT | |
-| level | TEXT | |
-| location | TEXT | |
-| method | TEXT | |
-| page | TEXT | |
+| level | VARCHAR | |
+| location | VARCHAR | |
+| method | VARCHAR | |
+| page | VARCHAR | |
 | registration | TIMESTAMP | |
 | sessionId | INT |  |
-| song | TEXT | |
+| song | VARCHAR | |
 | status | INT | |
 | ts | TIMESTAMP | |
-| userAgent | TEXT | |
+| userAgent | VARCHAR | |
 | userId | INT | |
 
 **Table**: `staging_songs` -- records from S3 song log
 | field name  | field type | field attribute(s) |
 | ----------- | ---------- | ------------------ |
 | num_songs | INT | |
-| artist_id | TEXT | |
+| artist_id | VARCHAR | |
 | artist_latitude | FLOAT | |
 | artist_longitude | FLOAT | |
-| artist_location | TEXT | |
-| artist_name | TEXT | |
-| song_id | TEXT | |
-| title | TEXT | |
+| artist_location | VARCHAR | |
+| artist_name | VARCHAR | |
+| song_id | VARCHAR | |
+| title | VARCHAR | |
 | duration | FLOAT | |
 | year | INT | |
 
@@ -88,12 +88,12 @@ We'll use the song and log datasets to create a _star_ schema. The _fact table_ 
 | songplay_id | INT  | IDENTITY(0,1) PRIMARY KEY, distkey |
 | start_time  | TIMESTAMP  |  NOT NULL        |
 | user_id     | INT        | NOT NULL, sortkey     |
-| level       | TEXT       |  |
-| song_id     | TEXT       | NOT NULL |
-| artist_id   | TEXT       | NOT NULL |
+| level       | VARCHAR       |  |
+| song_id     | VARCHAR       | NOT NULL |
+| artist_id   | VARCHAR       | NOT NULL |
 | session_id  | INT        | NOT NULL |
-| location    | TEXT       |  |
-| user_agent  | TEXT       |  |
+| location    | VARCHAR       |  |
+| user_agent  | VARCHAR       |  |
 
 _Note_: Redshift does not support `SERIAL` for auto increment id. Instead, we can obtain an auto-increment for an integer by using `IDENTITY(<seed>, <step>)`.
 
@@ -105,27 +105,27 @@ We will setup four dimensional tables: `users`, `songs`, `artists`, and `time`. 
 | field name  | field type | field attribute(s) |
 | ----------- | ---------- | ------------------ |
 | user_id     | INT | PRIMARY KEY, sortkey |
-| first_name  | TEXT | |
-| last_name   | TEXT | |
+| first_name  | VARCHAR | |
+| last_name   | VARCHAR | |
 | gender      | CHAR | |
-| level       | TEXT | |
+| level       | VARCHAR | |
 
 
 **Table**: `songs` -- collection of songs in music database
 | field name  | field type | field attribute(s) |
 | ----------- | ---------- | ------------------ |
-| song_id     | TEXT | PRIMARY KEY, sortkey |
-| title       | TEXT | NOT NULL |
-| artist_id   | TEXT | NOT NULL |
+| song_id     | VARCHAR | PRIMARY KEY, sortkey |
+| title       | VARCHAR | NOT NULL |
+| artist_id   | VARCHAR | NOT NULL |
 | year        | INT | |
 | duration    | FLOAT | |
 
 **Table**: `artists` -- collection of artists in music database
 | field name  | field type | field attribute(s) |
 | ----------- | ---------- | ------------------ |
-| artist_id   | TEXT | PRIMARY KEY, sortkey |
-| name        | TEXT | NOT NULL |
-| location    | TEXT | |
+| artist_id   | VARCHAR | PRIMARY KEY, sortkey |
+| name        | VARCHAR | NOT NULL |
+| location    | VARCHAR | |
 | latitude    | FLOAT | |
 | longitude   | FLOAT | |
 
