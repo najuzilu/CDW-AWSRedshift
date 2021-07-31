@@ -1,0 +1,10 @@
+name: cdw-aws-redshift
+channels:
+- defaults
+- conda-forge
+dependencies:
+- python=3.8
+- psycopg2
+- boto3
+- botocore
+- configparser
