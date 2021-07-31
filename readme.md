@@ -3,7 +3,7 @@
 <br />
 <p align="center">
     <a href="https://github.com/najuzilu/CDW-AWSRedshift">
-        <img src="./images/logo.png" alt="Logo" width="200" height="200">
+        <img src="./images/logo.png" alt="Logo" width="300" height="200">
     </a>
     <h3 align="center">Cloud Data Warehouse with AWS Redshift</h3>
 </p>
