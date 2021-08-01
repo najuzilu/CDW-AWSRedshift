@@ -21,7 +21,7 @@ In this project, you will move Sparkify's processes and data onto the cloud. Spe
 ### Tools
 
 * python
-* AWS 
+* AWS
 * Redshift
 
 ## Datasets
